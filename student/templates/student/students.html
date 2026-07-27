@@ -12,29 +12,41 @@
             <th>Name</th>
             <th>Course</th>
             <th>Email</th>
+            <th>Action</th>
         </tr>
     </thead>
 
     <tbody>
 
-    {% for student in students %}
+        {% for student in students %}
 
         <tr>
             <td>{{ student.id }}</td>
             <td>{{ student.name }}</td>
             <td>{{ student.course }}</td>
             <td>{{ student.email }}</td>
+
+            <td>
+                <a href="{% url 'edit_student' student.id %}" class="btn btn-warning btn-sm">
+                    Edit
+                </a>
+
+                <a href="{% url 'delete_student' student.id %}" class="btn btn-danger btn-sm"
+                    onclick="return confirm('Are you sure you want to delete this student?')">
+                    Delete
+                </a>
+            </td>
         </tr>
 
-    {% empty %}
+        {% empty %}
 
         <tr>
-            <td colspan="4" class="text-center">
+            <td colspan="5" class="text-center">
                 No students found.
             </td>
         </tr>
 
-    {% endfor %}
+        {% endfor %}
 
     </tbody>
 
