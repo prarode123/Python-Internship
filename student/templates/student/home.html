@@ -2,18 +2,108 @@
 
 {% block content %}
 
-<div class="text-center">
+<h2 class="mb-4 text-center">Dashboard</h2>
 
-    <h1 class="display-5">Welcome to Student Management System</h1>
+<div class="row">
 
-    <p class="lead">
-        This is my first Django project.
-    </p>
+    <div class="col-md-4">
 
-    <a href="/about/" class="btn btn-primary">
-        Learn More
-    </a>
+        <div class="card text-white bg-primary mb-3">
+
+            <div class="card-body">
+
+                <h5 class="card-title">Total Students</h5>
+
+                <h2>{{ total_students }}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card text-white bg-success mb-3">
+
+            <div class="card-body">
+
+                <h5 class="card-title">Total Courses</h5>
+
+                <h2>{{ total_courses }}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card text-white bg-dark mb-3">
+
+            <div class="card-body">
+
+                <h5 class="card-title">Recent Students</h5>
+
+                <h2>{{ recent_students|length }}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
+
+<hr>
+
+<h3 class="mb-3">Recently Added Students</h3>
+
+<table class="table table-bordered table-striped">
+
+    <thead class="table-dark">
+
+        <tr>
+
+            <th>ID</th>
+            <th>Name</th>
+            <th>Course</th>
+            <th>Email</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for student in recent_students %}
+
+        <tr>
+
+            <td>{{ student.id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.course }}</td>
+            <td>{{ student.email }}</td>
+
+        </tr>
+
+        {% empty %}
+
+        <tr>
+
+            <td colspan="4" class="text-center">
+
+                No Students Found
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
 
 {% endblock %}
